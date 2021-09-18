@@ -1,0 +1,120 @@
+﻿@model WishListModel
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<body>
+
+
+
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>wishlist</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active">wishlist</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+    <!--section start-->
+    @if (Model.ListWish.Count > 0)
+    {
+        <section class="wishlist-section section-b-space">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table cart-table table-responsive-xs">
+                            <thead>
+                                <tr class="table-head">
+                                    <th scope="col">image</th>
+                                    <th scope="col">product name</th>
+                                    <th scope="col">price</th>
+                                    <th scope="col">availability</th>
+                                    <th scope="col">action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ListWish)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-controller="Details" asp-action="Index" asp-route-id="@item.WishListDataId"><img src="@string.Format("/Uploads/{0}", item.Image)" alt=""></a>
+                                        </td>
+                                        <td>
+                                            <a href="#">@item.ProductName</a>
+                                            <div class="mobile-cart-content row">
+                                                <div class="col-xs-3">
+                                                    <p>in stock</p>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <h2 class="td-color">$@item.Price</h2>
+                                                </div>
+                                                <div class="col-xs-3">
+                                                    <h2 class="td-color">
+                                                        <a href="#" class="icon mr-1">
+                                                            <i class="ti-close"></i>
+                                                        </a><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.WishListDataId" asp-ro class="cart"><i class="ti-shopping-cart"></i></a>
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h2>$@item.Price</h2>
+                                        </td>
+                                        <td>
+                                            <p>in stock</p>
+                                        </td>
+                                        <td>
+                                            <a asp-controller="WishList" asp-action="RemoveItem" asp-route-id="@item.WishListDataId" class="icon mr-3"><i class="ti-close"></i> </a>
+                                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.WishListDataId" class="cart"><i class="ti-shopping-cart"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="row wishlist-buttons">
+                    <div class="col-12">
+                        <a href="/Home/All" class="btn btn-solid">continue shopping</a>
+                        <a href="/Cart/Cart" class="btn btn-solid">Go to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <section class="p-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="error-section">
+                            <h2>WishList Is Empty</h2>
+                            <a href="/Home/All" class="btn btn-solid">Go Shopping</a>
+                            <a href="/Home/Index" class="btn btn-solid">back to home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    <!--section end-->
+
+</body>
+
+</html>

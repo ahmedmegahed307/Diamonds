@@ -1,0 +1,118 @@
+﻿@model ShopingCart
+<!DOCTYPE html>
+<html lang="en">
+
+<br />
+<br />
+<br />
+<br />
+
+<body>
+
+
+
+    <!-- thank-you section start -->
+    <section class="section-b-space light-layout">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="success-text">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        <h2>thank you @ViewBag.first</h2>
+                        <p>Payment is successfully processsed and your order is on the way</p>
+                        <p>Transaction ID:267676GHERT105467</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section ends -->
+    <!-- order-detail section start -->
+    <section class="section-b-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-order">
+                        <h3>your order details</h3>
+                        <div class="row product-order-detail">
+                            @foreach (var item in Model.ListItems)
+                            {
+                                <div class="col-3">
+                                    <img src="@string.Format("/Uploads/{0}",item.ImageName)" alt=""
+                                         class="img-fluid blur-up lazyload">
+                                </div>
+                                <div class="col-3 order_detail">
+                                    <div>
+                                        <h4>product name </h4>
+                                        <h5>@item.ItemName</h5>
+                                    </div>
+                                </div>
+                                <div class="col-3 order_detail">
+                                    <div>
+                                        <h4>quantity</h4>
+                                        <h5>@item.Qty</h5>
+                                    </div>
+                                </div>
+                                <div class="col-3 order_detail">
+                                    <div>
+                                        <h4>price</h4>
+                                        <h5>@item.Total$</h5>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="total-sec">
+                            <ul>
+                                <li>subtotal <span>@Model.Total$</span></li>
+                                <li>shipping <span>$0.00</span></li>
+                                <li>tax(GST) <span>$0.00</span></li>
+                            </ul>
+                        </div>
+                        <div class="final-total">
+                            <h3>total <span>@Model.Total$</span></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row order-success-sec">
+                        <div class="col-sm-6">
+                            <h4>summery</h4>
+                            <ul class="order-detail">
+                                <li>order ID: 5563853658932</li>
+                                <li>Order Date:@DateTime.Now</li>
+                                @*<li>Order Total: @Model.Total</li>*@
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4>shipping address</h4>
+                            <ul class="order-detail">
+                                <li>@ViewBag.first @ViewBag.last</li>
+                                <li> @ViewBag.address </li>
+                                <li>@ViewBag.country , @ViewBag.postcode</li>
+                                <li>Contact No. @ViewBag.phone</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-12 payment-mode">
+                            <h4>payment method</h4>
+                            <p>
+                                Pay on Delivery (Cash/Card). Cash on delivery (COD) available. Card/Net banking
+                                acceptance subject to device availability.
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="delivery-sec">
+                                <h3>expected date of delivery</h3>
+                                <h2>october 22, 2021</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section ends -->
+</body>
+
+</html>

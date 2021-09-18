@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "03ZBDmE15+0InqhY5jFEkt7FSQg9vVSzM6xc9ovvb5NR3aaptp756ij1zy4RuSX4NuaBylHA865JH80o4juCdg==",
+  "success": true,
+  "projectFilePath": "D:\\Jewels\\JewelleryProject1\\Domains\\Domains.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dell\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\dell\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\dell\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

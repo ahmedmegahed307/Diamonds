@@ -1,0 +1,59 @@
+﻿@model TbProductImages
+<div class="page-body">
+
+
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="card card-info">
+                    <div class="card-header">
+                        <div class="btn btn-primary">Add Image</div>
+                    </div>
+                    <form asp-controller="Product" asp-action="SavePhoto" method="post"
+                          role="form" class="form-horizontal" enctype="multipart/form-data">
+                        <div class="card-body">
+
+
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Product Id</label>
+                                <div class="col-sm-4">
+                                    <input type="text" asp-for="ProductId" class="form-control" placeholder="Product Id">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Product Image</label>
+                                <div class="col-sm-4">
+                                    <input type="file" name="Files2" class="form-control">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">Submit</button>
+
+                        </div>
+                    </form>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+
+
+
+
+</div>
+

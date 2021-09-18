@@ -1,0 +1,103 @@
+﻿
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+
+@model PagedList<TbProduct>
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<body>
+
+    <!-- section start -->
+    <section class="section-b-space ratio_asos">
+        <div class="collection-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="collection-content col">
+                        <div class="page-main-content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="top-banner-wrapper">
+                                        <a href="#"><img src="/Slider/5.jpg" class="img-fluid blur-up lazyload" alt=""></a>
+
+                                    </div>
+                                    <div class="collection-product-wrapper">
+
+                                        <div class="product-wrapper-grid">
+                                            <div class="row margin-res">
+                                                @foreach (var item in Model)
+                                                {
+                                                    <div class="col-xl-3 col-6 col-grid-box">
+
+                                                        <div class="product-box">
+                                                            <div class="img-wrapper">
+                                                                <div class="front">
+                                                                    <a asp-controller="Details" asp-action="Index" asp-route-id="@item.TbProductId"><img src="@string.Format("/Uploads/{0}", item.ProductImageName)" class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                                                                </div>
+
+                                                                <div class="cart-info cart-wrap">
+                                                                    <a data-target="#addtocart"
+                                                                       title="Add to cart" asp-controller="Details" asp-action="AddToCart"
+                                                                       asp-route-id="@item.TbProductId">
+                                                                        <i class="ti-shopping-cart"></i>
+                                                                    </a>                                                                    <a asp-controller="Details" asp-action="AddToWishList" asp-route-id="@item.TbProductId" title="Add to Wishlist">
+                                                                        <i class="ti-heart" aria-hidden="true"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-detail">
+                                                                <div>
+                                                                    <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
+                                                                    <a asp-controller="Details" asp-action="Index" asp-route-id="@item.TbProductId">
+                                                                        <h6>@item.ProductName</h6>
+                                                                    </a>
+
+                                                                    <h4>$@item.ProductPrice</h4>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="pull-left">
+                                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Necklace", new { page = page }),
+                                                 new X.PagedList.Web.Common.PagedListRenderOptions
+                                                 {
+                                                     DisplayItemSliceAndTotal = true,
+                                                     ContainerDivClasses = new[] { "navigation" },
+                                                     LiElementClasses = new[] { "page-item" },
+                                                     PageClasses = new[] { "page-link" },
+                                                 })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section End -->
+
+
+
+
+</body>
+
+</html>
+@section Scripts{
+    <script>
+        // Workaround to fix style of text for showing items .. through ..
+        // Problem related to Boostrap 4 according to issue in link below
+        // https://github.com/dncuug/X.PagedList/issues/127
+        $(document).ready(function () {
+            $('ul.pagination > li.disabled > a').addClass('page-link');
+        });
+    </script>
+}

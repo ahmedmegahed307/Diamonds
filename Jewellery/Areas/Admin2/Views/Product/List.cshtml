@@ -1,0 +1,75 @@
+﻿
+@model List<TbProduct>
+<div class="page-body">
+
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Products List</h3>
+                    </div>
+
+                    <div class="card-body">
+
+
+                            
+                                <a asp-controller="Product" asp-action="Edit" class="btn btn-info">New Product</a>
+
+                                <table class="table table-hover text-nowrap">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Product Id</th>
+                                            <th>Product Name</th>
+                                            <th> Price</th>
+                                            <th>Image</th>
+                                            <th>Actions</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.TbProductId</td>
+                                                <td>@item.ProductName</td>
+
+                                                <td>@item.ProductPrice</td>
+                                                <td>
+                                                    <img src="@string.Format("/Uploads/{0}",item.ProductImageName)" width="60" height="60" />
+                                                </td>
+                                                <td>
+                                                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.TbProductId" class="btn btn-warning">Edit</a>
+                                                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.TbProductId" class="btn btn-primary">Delete</a>
+                                                </td>
+
+
+                                            </tr>
+
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            
+                           
+                        
+                        <div class="d-flex w-100 justify-content-center">
+                            <pagination page-count="@ViewBag.TotalPages" page-target="/Admin2/Product/List" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></pagination>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+
+</div>
+

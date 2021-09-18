@@ -1,0 +1,56 @@
+﻿@model ReviewsModel
+<html lang="en">
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<body>
+
+    <!--section start-->
+    <section class="contact-page section-b-space">
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="theme-form" asp-controller="Reviews" asp-action="ReviewsInfo" method="post" role="form">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="name">First Name</label>
+                                <input type="text" class="form-control" asp-for="FirstName" placeholder="Enter Your name"
+                                       required="">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="name">Last Name</label>
+                                <input type="text" class="form-control" asp-for="LastName" placeholder="Last Name" required="">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="review">Topic Name</label>
+                                <input type="text" class="form-control" asp-for="topicname" placeholder="Topic Name"
+                                       required="">
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="review">Write Your Message</label>
+                                <textarea class="form-control" placeholder="Write Your Message"
+                                          asp-for="Message" rows="6"></textarea>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="review">Date</label>
+                                <input type="date" class="form-control" asp-for="mydate" 
+                                       required="">
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-solid" type="submit">Send Your Review</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Section ends-->
+</body>
+
+</html>

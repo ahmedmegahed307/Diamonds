@@ -1,0 +1,154 @@
+﻿
+@model List<TbProduct>
+<!DOCTYPE html>
+<html lang="en"
+
+<body>
+
+    <!-- section start -->
+    <section class="section-b-space ratio_asos">
+        <div class="collection-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="collection-content col">
+                        <div class="page-main-content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="top-banner-wrapper">
+                                        <a href="#"><img src="/Slider/5.jpg" class="img-fluid blur-up lazyload" alt=""></a>
+
+                                    </div>
+                                    <div class="collection-product-wrapper">
+
+                                        <div class="product-wrapper-grid">
+                                            <div class="row margin-res">
+                                                @foreach (var item in Model)
+                                                {
+                                                    <div class="col-xl-3 col-6 col-grid-box">
+
+                                                        <div class="product-box">
+                                                            <div class="img-wrapper">
+                                                                <div class="ajaxbg d-none">
+                                                                    <img src="~/assets/images/ajax-loader.gif" />
+                                                                    <p  class="lead alert alert-info     text-center d-none">
+                                                                       Successfully added To Cart!
+                                                                    </p>
+                                                                </div>
+                                                                
+                                                                <div class="front">
+                                                                    <a asp-controller="Details" asp-action="Index" asp-route-id="@item.TbProductId"><img src="@string.Format("/Uploads/{0}", item.ProductImageName)" class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                                                                </div>
+
+                                                                <div class="cart-info cart-wrap">
+                                                                    <a data-target="#addtocart"
+                                                                       title="Add to cart" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.TbProductId"
+                                                                       data-id="@item.TbProductId" class="AddToCart">
+                                                                        <i class="ti-shopping-cart "></i>
+                                                                    </a>
+
+
+                                                                    <a asp-controller="WishList" asp-action="AddToWishList" asp-route-id="@item.TbProductId"
+                                                                       data-id="@item.TbProductId" class="AddTowishlist" title="Add to Wishlist">
+                                                                        <i class="ti-heart" aria-hidden="true"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-detail">
+                                                                <div>
+                                                                    <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
+                                                                    <a asp-controller="Details" asp-action="Index" asp-route-id="@item.TbProductId">
+                                                                        <h6>@item.ProductName</h6>
+                                                                    </a>
+
+                                                                    <h4>$@item.ProductPrice</h4>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                }
+                                              
+                                                @if (ViewBag.TotalPages > 1)
+                                                {
+                                                    <div class="d-flex w-100 justify-content-center">
+                                                        <pagination page-count="@ViewBag.TotalPages" page-target="/Home/@ViewBag.CategorySlug" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></pagination>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section End -->
+
+</body>
+
+</html>
+@section Scripts
+ {
+
+    <script>
+        $(function () {
+
+            $("a.AddToCart").click(function (e) {
+                e.preventDefault();
+
+                let ajaxDiv = $(this).parent().parent().find("div.ajaxbg");
+                ajaxDiv.removeClass("d-none");
+                let id = $(this).data("id");
+
+                $.get('/Cart/AddToCart/' + id, {}, function (data) {
+                    $("ul.show-div").html(data);
+                    ajaxDiv.find("img").addClass("d-none");
+                    ajaxDiv.find("img").addClass("d-none");
+                    ajaxDiv.find("p").removeClass("d-none");
+                    setTimeout(() => {
+                        ajaxDiv.animate({ opacity: 0 }, function () {
+                            $(this).addClass("d-none").fadeTo(.1, 1);
+                            $(this).find("img").removeClass("d-none");
+                            $(this).find("p").addClass("d-none");
+                        });
+                    });
+                });
+            });
+            
+
+        });
+
+        $(function () {
+
+            $("a.AddTowishlist").click(function (e) {
+                e.preventDefault();
+
+                let ajaxDiv = $(this).parent().parent().find("div.ajaxbg");
+                ajaxDiv.removeClass("d-none");
+                let id = $(this).data("id");
+
+                $.get('/WishList/AddToWishList/' + id, {}, function (data) {
+                    $("li.show-div").html(data);
+                    
+                    setTimeout(() => {
+                        ajaxDiv.animate({ opacity: 0 }, function () {
+                            $(this).addClass("d-none").fadeTo(.1, 1);
+                            
+                            $(this).find("img").removeClass("d-none");
+                         
+                            $(this).find("p").addClass("d-none");
+                        });
+                    });
+                });
+            });
+
+
+        });
+    </script>
+}
+

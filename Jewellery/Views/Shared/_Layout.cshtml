@@ -1,0 +1,451 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="multikart">
+    <meta name="keywords" content="multikart">
+    <meta name="author" content="multikart">
+    <link rel="icon" href="~/assets/images/logos/7.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="~/assets/images/logos/7.png" type="image/x-icon" />
+    <title>DIAMONDS</title>
+
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/fontawesome.css">
+
+    <!--Slick slider css-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/slick-theme.css">
+
+    <!-- Animate icon -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css">
+
+    <!-- Themify icon -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/themify-icons.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.css">
+
+    <!-- Theme css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/color16.css" media="screen" id="color">
+
+
+</head>
+
+<body class="bg_cls">
+
+    <!-- header start -->
+    <header class="header-5">
+        <div class="mobile-fix-option"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="main-menu">
+                        <div class="menu-left">
+                            <div class="brand-logo">
+                                <a href="~/">
+                                    <img src="~/assets/images/logos/7.png"
+                                         class="img-fluid blur-up lazyload" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="menu-right pull-right">
+                            <div>
+                                <nav id="main-nav">
+                                    <div class="toggle-nav">
+                                        <i class="fa fa-bars sidebar-bar"></i>
+                                    </div>
+                                    <!-- Horizontal menu -->
+                                    <ul id="main-menu" class="sm pixelstrap sm-horizontal">
+                                        <li>
+                                            <div class="mobile-back text-right">
+                                                Back<i class="fa fa-angle-right pl-2"
+                                                       aria-hidden="true"></i>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="~/">@localizer["Home"]</a>
+
+                                        </li>
+
+
+
+
+                                        @await Component.InvokeAsync("Categories")
+
+                                        <li>
+
+                                            <a asp-controller="Reviews" asp-action="Reviews"> @localizer["Reviews"]</a>
+                                            <ul>
+
+
+                                                <li><a asp-controller="Reviews" asp-action="Reviews">@localizer["ViewReviews"]</a></li>
+
+                                                <li>
+                                                    <a asp-controller="Reviews" asp-action="ReviewsMainPage">
+                                                        @localizer["WriteReview"] <span class="new-tag">new</span>
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a href="/Contact/contact">@localizer["ContactUs"]</a>
+
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="top-header">
+                                <ul class="header-dropdown">
+                                    <li class="mobile-wishlist">
+                                        <a asp-controller="WishList" asp-action="wishlist">
+                                            <img src="~/assets/images/jewellery/icon/heart.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="onhover-dropdown mobile-account">
+                                        <img src="~/assets/images/jewellery/icon/avatar.png" alt="">
+                                        <ul class="onhover-show-div">
+                                            <li>
+
+                                                <partial name="_LoginPartial" />
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="icon-nav">
+                                    <ul>
+                                        <li class="onhover-div mobile-search">
+                                            <div>
+                                                <img src="~/assets/images/jewellery/icon/search.png"
+                                                     onclick="openSearch()" class="img-fluid blur-up lazyload" alt="">
+                                                <i class="ti-search" onclick="openSearch()"></i>
+                                            </div>
+                                            <div id="search-overlay" class="search-overlay">
+                                                <div>
+                                                    <span class="closebtn" onclick="closeSearch()"
+                                                          title="Close Overlay">×</span>
+                                                    <div class="overlay-content">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-xl-12">
+                                                                    <form>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"
+                                                                                   id="exampleInputPassword1"
+                                                                                   placeholder="Search a Product">
+                                                                        </div>
+                                                                        <button type="submit" class="btn btn-primary">
+                                                                            <i class="fa fa-search"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="onhover-div mobile-setting">
+                                            <div>
+
+                                                <img src="~/assets/images/jewellery/icon/controls.png"
+                                                     class="img-fluid blur-up lazyload" alt="">
+                                                <i class="ti-settings"></i>
+
+                                            </div>
+                                            <div class="show-div setting">
+                                                <h6>@localizer["Language"]</h6>
+                                                <ul>
+
+                                                    <partial name="_LanguaguePartial" />
+                                                </ul>
+                                                <h6>@localizer["Currency"]</h6>
+                                                <ul class="list-inline">
+                                                    <li><a href="#">@localizer["Euro"]</a> </li>
+                                                    <li><a href="#">@localizer["EgyptianPound"]</a> </li>
+                                                    <li><a href="#">@localizer["TurkishLira"]</a> </li>
+                                                    <li><a href="#">@localizer["Dollar"]</a> </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="onhover-div mobile-cart ">
+
+                                            <div>
+                                                <img src="~/assets/images/jewellery/icon/cart.png"
+                                                     class="img-fluid blur-up lazyload" alt="">
+                                                @await Component.InvokeAsync("SmallCartCount")
+                                            </div>
+
+
+                                            <ul class="show-div shopping-cart">
+                                                @await Component.InvokeAsync("SmallCart")
+                                            </ul>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+
+
+
+    @RenderBody()
+    <!-- footer -->
+    <footer class="jewel-footer">
+        <div class="white-layout">
+            <section class="p-0 ">
+                <div class="container-fluid">
+                    <div class="row footer-theme2 section-light footer-border">
+                        <div class="col">
+                            <div class=" footer-block">
+                                <div class="footer-container">
+                                    <div class="footer-title footer-mobile-title">
+                                        <h4>about</h4>
+                                    </div>
+                                    <div class="footer-contant">
+                                        <div class="footer-logo">
+                                            <img src="~/assets/images/logos/7.png" alt="">
+                                        </div>
+                                        <div class="social-white">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col form-p p-0">
+                            <div class="footer-block">
+                                <div class="subscribe-white">
+                                    <h2 class="text-white">newsletter</h2>
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="exampleFormControlInput"
+                                                   style="letter-spacing:1px" placeholder="Enter your email">
+                                            <button type="submit" class="btn btn-solid black-btn">subscribe</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class=" footer-block">
+                                <div class="footer-container">
+                                    <div class="footer-title">
+                                        <h4>store information</h4>
+                                    </div>
+                                    <div class="footer-contant">
+                                        <ul class="contact-details">
+                                            <li>Türkiye,Istanbul,Avcilar Merkez Lemon sokak</li>
+                                            <li>Call Us: +905468940531</li>
+                                            <li>Email Us: <a href="#">ahmedmegahed764@gmail.com</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="sub-footer black-subfooter ">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                        <div class="footer-end">
+                            <p>
+                                <i class="fa fa-copyright" aria-hidden="true"></i> 2020-2021  powered by
+                                Ahmed Nassef
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                        <div class="payment-card-bottom">
+                            <ul>
+                                <li>
+                                    <a href="#"><img src="~/assets/images/icon/visa.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="~/assets/images/icon/mastercard.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="~/assets/images/icon/paypal.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="~/assets/images/icon/american-express.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="~/assets/images/icon/discover.png" alt=""></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- theme setting -->
+    <a href="javascript:void(0)" onclick="openSetting()">
+        <div>
+            <i class="fa fa-cog" aria-hidden="true"></i>
+        </div>
+
+    </a>
+    <div id="setting_box" class="setting-box">
+        <a href="javascript:void(0)" class="overlay" onclick="closeSetting()"></a>
+        <div class="setting_box_body">
+            <div onclick="closeSetting()">
+                <div class="sidebar-back text-left"><i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Back</div>
+            </div>
+            <div class="setting-body">
+
+
+
+
+
+                <div class="setting-title">
+                    <h4>color picker</h4>
+                </div>
+                <div class="setting-contant">
+                    <ul class="color-box">
+                        <li>
+                            <input id="ColorPicker1" type="color" value="#5fcbc4" name="Background">
+                            <span>theme deafult color</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="setting-title">
+                    <h4>RTL</h4>
+                </div>
+                <div class="setting-contant">
+                    <ul class="setting_buttons">
+                        <li class="active" id="ltr_btn">
+                            <a href="javascript:void(0)" class="btn setting_btn">LTR</a>
+                        </li>
+                        <li id="rtl_btn"><a href="javascript:void(0)" class="btn setting_btn">RTL</a></li>
+                    </ul>
+                </div>
+                <div class="buy_btn">
+                    <a href="https://themeforest.net/item/multikart-responsive-ecommerce-html-template/22809967?s_rank=1"
+                       target="_blank" class="btn btn-block purchase_btn">
+                        <i class="fa fa-shopping-cart"
+                           aria-hidden="true"></i> purchase Multikart now!
+                    </a>
+                    <a href="https://themeforest.net/item/multikart-responsive-angular-ecommerce-template/22905358?s_rank=3"
+                       target="_blank" class="btn btn-block purchase_btn">
+                        <img src="/assets/images/icon/angular.png" alt="" class="img-fluid"> Multikart Angular
+                    </a>
+                    <a href="https://themeforest.net/item/multikart-responsive-react-ecommerce-template/23067773?s_rank=2"
+                       target="_blank" class="btn btn-block purchase_btn">
+                        <img src="/assets/images/icon/react.png" alt="" class="img-fluid"> Multikart React
+                    </a>
+                    <a href="https://themeforest.net/item/multikart-multipurpose-shopify-sections-theme/23093831?s_rank=1"
+                       target="_blank" class="btn btn-block purchase_btn">
+                        <img src="/assets/images/icon/shopify.png" alt="" class="img-fluid"> Multikart Shopify
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- theme setting -->
+    <!-- tap to top -->
+    <div class="tap-top">
+        <div>
+            <i class="fa fa-angle-double-up"></i>
+        </div>
+    </div>
+
+    <!-- latest jquery-->
+    <script src="~/assets/js/jquery-3.3.1.min.js"></script>
+
+    <!-- fly cart ui jquery-->
+    <script src="~/assets/js/jquery-ui.min.js"></script>
+
+    <!-- popper js-->
+    <script src="~/assets/js/popper.min.js"></script>
+
+    <!-- slick js-->
+    <script src="~/assets/js/slick.js"></script>
+
+    <!-- menu js-->
+    <script src="~/assets/js/menu.js"></script>
+
+    <!-- lazyload js-->
+    <script src="~/assets/js/lazysizes.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="~/assets/js/bootstrap.js"></script>
+
+    <!-- Bootstrap Notification js-->
+    <script src="~/assets/js/bootstrap-notify.min.js"></script>
+
+    <!-- Theme js-->
+    <script src="~/assets/js/script.js"></script>
+
+
+
+    <script>
+        $(window).on('load', function () {
+            setTimeout(function () {
+                $('#exampleModal').modal('show');
+            }, 2500);
+        });
+        function openSearch() {
+            document.getElementById("search-overlay").style.display = "block";
+        }
+
+        function closeSearch() {
+            document.getElementById("search-overlay").style.display = "none";
+        }
+
+
+    </script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+
+</html>

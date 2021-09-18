@@ -1,0 +1,79 @@
+﻿@model List<TbProduct>
+<div class="page-body">
+
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="page-header-left">
+
+                        <h3>
+
+                            Product List
+
+                        </h3>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row products-admin ratio_asos">
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-3 col-sm-6">
+
+                    <div class="card">
+
+
+
+                        <div class="card-body product-box">
+                            <div class="img-wrapper">
+                                <div class="front">
+                                    <a href="#"><img src="@string.Format("/Uploads/{0}", item.ProductImageName)" class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                                    <div class="product-hover">
+                                        <ul>
+                                            <li>
+                                                <a class="fa fa-pencil" asp-controller="Product" asp-action="Edit" asp-route-id="@item.TbProductId"></a>
+
+                                            </li>
+                                            <li>
+                                                <a class="fa fa-trash" asp-controller="Product" asp-action="Delete" asp-route-id="@item.TbProductId"></a>
+                                            </li>
+                                            @*<li>
+                                            <button class="btn" type="button" data-original-title="" title=""><i class="ti-pencil-alt"></i></button>
+
+                                        </li>
+                                        <li>
+                                            <button class="btn" type="button" data-toggle="modal" data-target="#exampleModalCenter" data-original-title="" title=""><i class="ti-trash"></i></button>
+                                        </li>*@
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-detail">
+                                <a href="#">
+                                    <h6>@item.ProductName</h6>
+                                </a>
+                                <h4>$@item.ProductPrice </h4>
+                                <ul class="color-variant">
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+    <div class="d-flex w-100 justify-content-center">
+        <pagination page-count="@ViewBag.TotalPages" page-target="/Admin2/Product/ProductsInProject" page-number="@ViewBag.PageNumber" page-range="@ViewBag.PageRange"></pagination>
+    </div>
+</div>

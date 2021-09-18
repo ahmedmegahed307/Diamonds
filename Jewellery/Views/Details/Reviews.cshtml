@@ -1,0 +1,82 @@
+﻿@model List<ReviewsModel>
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body>
+
+
+    <!-- breadcrumb start -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="page-title">
+                        <h2>review</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">review</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb End -->
+    <!-- section start -->
+    @foreach (var item in Model)
+    {
+        <section class="section-b-space blog-detail-page review-page">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <ul class="comment-section">
+                            <li>
+                                <div class="media">
+                                    <img src="~/Uploads/avatar5.png" alt="Generic placeholder image">
+                                   
+                                    <div class="media-body">
+                                        <h3>@item.FirstName @item.LastName <span>(Topic: @item.topicname (@item.mydate))</span></h3>
+                                        <h5>
+                                            @item.Message
+                                        </h5>
+                                        <ul class="comnt-sec">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-thumbs-o-up"
+                                                       aria-hidden="true"></i><span>(14)</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <div class="unlike">
+                                                        <i class="fa fa-thumbs-o-down"
+                                                           aria-hidden="true"></i>(2)
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+                
+            </div>
+        </section>
+<hr />    }
+        <!-- Section ends -->
+
+
+    </body>
+
+</html>

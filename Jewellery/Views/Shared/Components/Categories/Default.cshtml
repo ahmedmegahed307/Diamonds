@@ -1,0 +1,16 @@
+﻿@model IEnumerable<TbCategory>
+
+<li>
+    <a href="/Home/All">Categories</a>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a asp-controller="Home" asp-action="ProductsByCategory" asp-route-categorySlug="@item.Slug">@item.CategoryName</a>
+            </li>
+        }
+        <li>
+            <a asp-controller="Home" asp-action="All" >All Products</a>
+        </li>
+    </ul>
+</li>
